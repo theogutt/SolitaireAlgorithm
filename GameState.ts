@@ -1,4 +1,5 @@
 class Card{
+    //skelet
 
 }
 class Gamestate{
@@ -46,9 +47,14 @@ class App{
 
     convertData():Card[][]{
         //TODO
+        //omdan data fra billedgenkendelse til arrays af kort
        let cards : Card[][];
        return cards;
     }
-
+    move():string{
+        let suggestion : string ="";
+        //giv et forslag baseret på algortime
+        return suggestion;
+    }
 
 }
