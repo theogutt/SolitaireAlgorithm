@@ -1,60 +1,77 @@
-class Card{
+class Card {
     //skelet
 
 }
-class Gamestate{
-    cardStacks : Card[][];
-    constructor(arrayOfCardArrays : Card[][]){
+class Gamestate {
+    cardStacks: Card[][];
+    constructor(arrayOfCardArrays: Card[][]) {
         this.cardStacks = arrayOfCardArrays;
     }
-    readonly GAME_OVER_WIN : number = 1;        
-    readonly GAME_OVER_LOST : number = -1;        
-    readonly GAME_ONGOING : number = 0;
+    readonly GAME_OVER_WIN: number = 1;
+    readonly GAME_OVER_LOST: number = -1;
+    readonly GAME_ONGOING: number = 0;
 
-    status(cardStacks : Card[][]):number{
-        if(this.gameWon(cardStacks)){
+    status(cardStacks: Card[][]): number {
+        if (this.gameWon(cardStacks)) {
             return this.GAME_OVER_WIN;
         }
-        else if(this.gameLost(cardStacks)){
+        else if (this.gameLost(cardStacks)) {
             return this.GAME_OVER_LOST;
         }
-        else{
+        else {
             return this.GAME_ONGOING;
         }
     }
-    gameWon(cardStacks : Card[][]):boolean{
-        let bool : boolean = false; 
+    gameWon(cardStacks: Card[][]): boolean {
+        let bool: boolean = false;
         //insert if condition
-        if(false){
+        if (false) {
             bool = true;
         }
         return bool;
     }
-    gameLost(cardStacks : Card[][]):boolean{
-        let bool : boolean = false; 
+    gameLost(cardStacks: Card[][]): boolean {
+        let bool: boolean = false;
         //insert if condition
-        if(false){
+        if (false) {
             bool = true;
         }
         return bool;
     }
 }
-class App{
-    
+class App {
+
     gamestate = new Gamestate(this.convertData());
     //replace later
 
 
-    convertData():Card[][]{
+    convertData(): Card[][] {
         //TODO
         //omdan data fra billedgenkendelse til arrays af kort
-       let cards : Card[][];
-       return cards;
+        let cards: Card[][] = [];
+        return cards;
     }
-    move():string{
-        let suggestion : string ="";
+    move(): string {
+        let suggestion: string = "";
         //giv et forslag baseret på algortime
+        if (this.gamestate.GAME_OVER_LOST) {
+
+        }
+        else if (this.gamestate.GAME_OVER_WIN) {
+
+        }
+        else {
+
+        }
         return suggestion;
+    }
+    arrayFromMultiArray(multiArray: Card[][], row: number): Card[] {
+        //for at få en bunke
+        let simpleArray: Card[] = [];
+        for (var i: number = 0; i < multiArray.length; i++) {
+            simpleArray[i] = multiArray[row][i];
+        }
+        return simpleArray;
     }
 
 }
