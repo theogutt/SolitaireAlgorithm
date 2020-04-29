@@ -68,7 +68,7 @@ class App {
     arrayFromMultiArray(multiArray: Card[][], row: number): Card[] {
         //for at få en bunke
         let simpleArray: Card[] = [];
-        for (var i: number = 0; i < multiArray.length; i++) {
+        for (var i: number = 0; i < multiArray[row].length; i++) {
             simpleArray[i] = multiArray[row][i];
         }
         return simpleArray;
