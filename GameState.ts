@@ -1,6 +1,8 @@
 class Card {
-    //skelet
-
+    constructor(public value: number, public suit: string) { }
+    toString(): string {
+        return "${this.value} of ${this.suit}";
+    }
 }
 class Gamestate {
     cardStacks: Card[][];
@@ -40,11 +42,13 @@ class Gamestate {
     }
 }
 class App {
+    readonly aces = [new Card(1, "clubs"), new Card(1, "hearts"), new Card(1, "diamonds"), new Card(1, "spades")];
+    readonly deuces = [new Card(2, "clubs"), new Card(2, "hearts"), new Card(2, "diamonds"), new Card(2, "spades")];
+    readonly acesdeuces = this.aces.concat(this.deuces);
 
     gamestate = new Gamestate(this.convertData());
+    cards = this.convertData();
     //replace later
-
-
     convertData(): Card[][] {
         //TODO
         //omdan data fra billedgenkendelse til arrays af kort
@@ -61,15 +65,33 @@ class App {
             suggestion = "GAME WON";
         }
         else {
-            //To implement 
-            //check deck
-            //aces and deuces to foundation
-            //expose hidden cards from column with the most hidden cards
-            //The best move provides you opportunity to make other moves or expose hidden cards
-            //Don't empty a tableau pile without a King to replace. 
-            //Consider carefully whether to fill a space with a  black King or a red King 
+            //1 check deck (size check?)
+            let deck = this.arrayFromMultiArray(this.cards, 0);
+            if (false) {
+                return "check deck";
+            }
+            //2 aces and deuces to foundation
+            //mangler stadig at tjekke om der er et es i foundation i tilfælde af 2'ere
+            let acedeuce = this.containsOne(this.acesdeuces, deck);
+            if (acedeuce != new Card(0, "")) {
+                return "move " + acedeuce.toString + " to " + acedeuce.suit + " foundation";
+            }
+            //3 expose hidden cards from column with the most hidden cards
+            //4 The best move provides you opportunity to make other moves or expose hidden cards
+            //5 Don't empty a tableau pile without a King to replace. 
+            //6 Consider carefully whether to fill a space with a  black King or a red King 
         }
         return suggestion;
+    }
+    containsOne(referenceArray: Card[], column: Card[]): Card {
+        for (var i: number = 0; i < column.length; i++) {
+            for (var j: number = 0; j < referenceArray.length; j++) {
+                if (column[i] == referenceArray[j]) {
+                    return referenceArray[j];
+                }
+            }
+        }
+        return new Card(0, "");
     }
     contains(card: Card, column: Card[]): boolean {
         let bool: boolean = false;
